@@ -20,7 +20,7 @@ class Truth(Player):
 
     def strategy(self, opponent: Player) -> Action:
         if not opponent.history or len(opponent.history) < 3:
-            print("no history or short")
+            #print("no history or short")
             return C
         else:
             try: 
