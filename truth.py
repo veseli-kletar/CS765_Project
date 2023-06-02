@@ -19,24 +19,25 @@ class Truth(Player):
         super().__init__()
 
     def strategy(self, opponent: Player) -> Action:
-                
-        if not self.history:
+        if not opponent.history or len(opponent.history) < 3:
+            print("no history or short")
             return C
         else:
             try: 
-                last_3_moves = self._history.cooperations[-3:]
+                last_3_moves = opponent.history[-3:]
                 k = 0
-                for i in len(last_3_moves):
-                    if last_3_moves[i] == D:
+                for i in range(len(last_3_moves)):
+                    if last_3_moves[i] == D or last_3_moves[i] == "D":
                         k += -i
                     else:
                         k += i
-                print(last_3_moves)
                 if k >= 0:
+                    #print(str(last_3_moves) + ": C")
                     return C
                 else:
+                    #print(str(last_3_moves) + ": D")
                     return D
             except Exception as e:
-                print(self.history)
+                #print(e)
                 return C
 
